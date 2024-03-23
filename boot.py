@@ -10,7 +10,7 @@ except:
 from machine import Pin
 import network
 
-import WIFI_CREDENTIALS
+from WIFI_CREDENTIALS import ssid, password
 from ota import OTAUpdater
 
 import esp
@@ -33,6 +33,6 @@ print(wlan.ifconfig())
 
 led = Pin(2, Pin.OUT)
 
-firmware_url = "https://github.com/janferdinand/thermostat/blob/master"
+firmware_url = "https://raw.githubusercontent.com/janferdinand/thermostat/master/"
 ota_updater = OTAUpdater('', '', firmware_url, "main.py")
 ota_updater.download_and_install_update_if_available()

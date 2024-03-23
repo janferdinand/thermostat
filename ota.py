@@ -39,6 +39,7 @@ class OTAUpdater:
         version_url = version_url.replace("§", "/", 4)                             # Rollback Temporary change
         version_url = version_url + filename                                       # Add the targeted filename
         
+        print(version_url)
         return version_url
 
     def connect_wifi(self):
@@ -103,7 +104,7 @@ class OTAUpdater:
         
     def check_for_updates(self):
         """ Check if updates are available."""
-        if (self.ssid=''):
+        if (self.ssid==''):
             print(f'Assuming WiFi is already connected')
         else:
             # Connect to Wi-Fi
@@ -114,6 +115,8 @@ class OTAUpdater:
         response = urequests.get(self.version_url, headers=headers)
         
         data = json.loads(response.text)
+        
+        print(data)
        
         self.latest_version = data['oid']                   # Access directly the id managed by GitHub
         print(f'latest version is: {self.latest_version}')

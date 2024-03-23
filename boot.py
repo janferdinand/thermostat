@@ -11,7 +11,7 @@ from machine import Pin
 import network
 
 from WIFI_CREDENTIALS import ssid, password
-from ota import OTAUpdater
+
 
 import esp
 esp.osdebug(None)
@@ -32,7 +32,3 @@ print('Connection successful')
 print(wlan.ifconfig())
 
 led = Pin(2, Pin.OUT)
-
-firmware_url = "https://raw.githubusercontent.com/janferdinand/thermostat/master/"
-ota_updater = OTAUpdater('', '', firmware_url, "main.py")
-ota_updater.download_and_install_update_if_available()

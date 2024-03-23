@@ -87,7 +87,6 @@ class OTAUpdater:
         self.latest_code = None
 
         # Overwrite the old code.
-        os.remove(self.filename)
         os.rename('latest_code.py', self.filename)
 
     def update_and_reset(self):

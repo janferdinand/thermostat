@@ -43,7 +43,7 @@ class OTAUpdater:
 
     def connect_wifi(self):
         """ Connect to Wi-Fi."""
-
+        print(f'Trying to connect to WiFi')
         sta_if = network.WLAN(network.STA_IF)
         sta_if.active(True)
         sta_if.connect(self.ssid, self.password)
@@ -103,9 +103,11 @@ class OTAUpdater:
         
     def check_for_updates(self):
         """ Check if updates are available."""
-        
-        # Connect to Wi-Fi
-        self.connect_wifi()
+        if (self.ssid=''):
+            print(f'Assuming WiFi is already connected')
+        else:
+            # Connect to Wi-Fi
+            self.connect_wifi()
 
         print('Checking for latest version...')
         headers = {"accept": "application/json"} 

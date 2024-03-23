@@ -111,20 +111,24 @@ class OTAUpdater:
             self.connect_wifi()
 
         print('Checking for latest version...')
-        headers = {"accept": "application/json"} 
-        response = urequests.get(self.version_url, headers=headers)
+        headers = {"accept": "application/json"}
+        try:
+            response = urequests.get(self.version_url, headers=headers)
+            data = json.loads(response.text)
+            
+            print(data)
+           
+            self.latest_version = data['oid']                   # Access directly the id managed by GitHub
+            print(f'latest version is: {self.latest_version}')
         
-        data = json.loads(response.text)
-        
-        print(data)
-       
-        self.latest_version = data['oid']                   # Access directly the id managed by GitHub
-        print(f'latest version is: {self.latest_version}')
-        
-        # compare versions
-        newer_version_available = True if self.current_version != self.latest_version else False
-        
-        print(f'Newer version available: {newer_version_available}')    
+            # compare versions
+            newer_version_available = True if self.current_version != self.latest_version else False
+            
+            print(f'Newer version available: {newer_version_available}')
+        except:
+            print('Get github data exception')
+            newer_version_available=False
+            
         return newer_version_available
     
     def download_and_install_update_if_available(self):

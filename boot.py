@@ -21,6 +21,7 @@ gc.collect()
 
 
 wlan = network.WLAN(network.STA_IF) # create station interface
+wlan.active(False)
 wlan.active(True)       # activate the interface
 wlan.ifconfig(("192.168.1.187", "255.255.255.0", "192.168.1.1", "192.168.1.1"))
 wlan.connect(ssid, password) # connect to an AP

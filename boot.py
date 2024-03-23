@@ -7,7 +7,7 @@ try:
 except:
   import socket
 
-from machine import Pin
+from machine import Pin, ADC
 import network
 
 from WIFI_CREDENTIALS import ssid, password
@@ -33,3 +33,5 @@ print('Connection successful')
 print(wlan.ifconfig())
 
 led = Pin(2, Pin.OUT)
+relay = Pin(4, Pin.OUT)
+analogPin = ADC(0)
